@@ -1,0 +1,1 @@
+export const ex = "https://interview.switcheo.com/prices.json";

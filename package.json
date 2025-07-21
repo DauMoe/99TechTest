@@ -1,0 +1,26 @@
+{
+  "name": "99techtest",
+  "version": "1.0.0",
+  "description": "Frontend coding challenge solution",
+  "main": "index.js",
+  "scripts": {
+    "problem_1": "node ./src/problem1",
+    "problem_2": "cd ./src/problem2 && yarn dev",
+    "figma": "node ./src/figma/index.js",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [
+    "99Tech",
+    "coding",
+    "challenge"
+  ],
+  "author": "BeanMeow",
+  "license": "MIT",
+  "devDependencies": {
+    "vite": "^7.0.5"
+  },
+  "dependencies": {
+    "axios": "^1.6.0",
+    "dotenv": "^16.3.1"
+  }
+}
