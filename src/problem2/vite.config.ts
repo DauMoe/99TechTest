@@ -11,6 +11,8 @@ const config = {
       '@styles': path.resolve(__dirname, 'src', 'styles'),
       "@utils": path.resolve(__dirname, 'src', 'utils.ts'),
       "@assets": path.resolve(__dirname, 'src', 'assets'),
+      "@pages": path.resolve(__dirname, 'src', 'pages'),
+      "@handler": path.resolve(__dirname, 'src', 'handler'),
     },
   },
 };

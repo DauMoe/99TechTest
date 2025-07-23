@@ -5,7 +5,7 @@
   "main": "index.js",
   "scripts": {
     "problem_1": "node ./src/problem1",
-    "problem_2": "cd ./src/problem2 && yarn dev",
+    "problem_2": "cd ./src/problem2 &&  yarn && yarn dev",
     "figma": "node ./src/figma/index.js",
     "test": "echo \"Error: no test specified\" && exit 1"
   },

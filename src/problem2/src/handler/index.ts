@@ -1,9 +1,8 @@
-import tokens from '../__mocks__/tokens.json';
-import prices from '../__mocks__/prices.json';
 import { removeExt } from '@utils';
+import { customFetch, priceUrl, tokenDataUrl } from './../network';
 
-const fetchTokenPrices = async () => prices;
-const fetchTokens = async () => tokens;
+const fetchTokenPrices = async () => customFetch<PriceSchema[]>(priceUrl);
+const fetchTokens = async () => customFetch<TokenSchema[]>(tokenDataUrl);
 
 export const filterAvailableTokens = async (): Promise<(PriceSchema & TokenSchema)[]> => {
   let tokenList: (PriceSchema & TokenSchema)[] = [];
@@ -25,11 +24,8 @@ export const filterAvailableTokens = async (): Promise<(PriceSchema & TokenSchem
         }
       }
     }
-  } catch(e) {
-    // console.error(e);
-  }
+  } catch(e) {}
 
-  // Remove duplicates by token.currency
   const uniqueTokens = Array.from(
     new Map(tokenList.map(item => [item.currency, item])).values()
   );

@@ -1,13 +1,18 @@
+<script module>
+  export type ExchangeFormPropsTypes = {
+    tokenList: TokenListType[];
+  }
+</script>
+
 <script lang="ts">
   import "@styles/exchangeForm.scss";
   import Input from "./Input.svelte";
   import Selector from "./Selector.svelte";
   import Clickable from "./Clickable.svelte";
   import SwapIcon from '@assets/swap_arrow.png';
-  import ExchangeTable from "./ExchangeTable.svelte";
   import ArrowDown from '@assets/arrow_down_black.png';
 
-  let { tokenList } = $props();
+  let { tokenList }: ExchangeFormPropsTypes = $props();
 
   let selectedSourceToken = $state<TokenListType>();
   let selectedOutputToken = $state<TokenListType>();
@@ -105,5 +110,3 @@
   <a href="#exchange_table">Coin to USD exchange rate</a>
   <img src={ArrowDown} alt="arrow down"/>
 </div>
-
-<ExchangeTable {tokenList} />

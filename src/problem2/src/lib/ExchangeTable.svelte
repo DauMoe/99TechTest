@@ -14,7 +14,7 @@
   let visibleTokenList = $state<TokenListType[]>([]);
   let pageIndex = $state<number>(1);
 
-  const getTotalPage = () => Math.round(tokenList?.length / itemPerView)
+  const getTotalPage = () => Math.round(tokenList.length / itemPerView)
 
   const updateTable = (direction: number) => {
     let nextPage = pageIndex + direction;

@@ -31,14 +31,17 @@
 
       & > .token__container {
         position: relative;
+        display: flex;
+        flex-direction: row;
+        align-items: center;
+        background-color: white;
+        border-radius: 10px;
 
         & >.textBox__wrapper  {
-          background-color: $white;
+          border: none;
         }
 
         & > .exchangeForm__selection {
-          position: absolute;
-          right: 10px;
           top: 0;
         }
       }

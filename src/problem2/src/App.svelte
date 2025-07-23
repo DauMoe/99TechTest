@@ -1,16 +1,5 @@
 <script lang="ts">
-  import ExchangeForm from '@lib/ExchangeForm.svelte';
-  import '@styles/index.scss';
-  import { onMount } from 'svelte';
-  import { filterAvailableTokens } from './handler';
-
-  let tokenList = $state<(PriceSchema & TokenSchema)[]>();
-
-  onMount(() => {
-    filterAvailableTokens().then(data => {
-      tokenList = data
-    });
-  });
+  import { Home } from "@pages/index";
 </script>
 
-<ExchangeForm {tokenList} />
+<Home />

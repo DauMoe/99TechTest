@@ -20,6 +20,8 @@
       "@lib/*": ["src/lib/*"],
       "@styles/*": ["src/styles/*"],
       "@assets/*": ["src/assets/*"],
+      "@pages/*": ["src/pages/*"],
+      "@handler/*": ["src/handler/*"],
       "@utils": ["src/utils.ts"],
     }
   },
