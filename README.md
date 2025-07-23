@@ -5,3 +5,10 @@
 ## How to run
 Open CMD or Terminal. Nodejs is required
 - Problem 1: `yarn problem_1` -> It will ask for `N` value. Type it then it will give you result back
+- Problem 2: 
+  - `cd ./src/problem2 && yarn` 
+  - `yarn dev`
+  - Open browser at url [http://localhost:5173/](http://localhost:5173/)
+
+![preview_1](./media/preview1_problem2.png)
+![preview_2](./media/preview2_problem2.png)
