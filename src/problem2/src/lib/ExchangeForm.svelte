@@ -4,6 +4,8 @@
   import Selector from "./Selector.svelte";
   import Clickable from "./Clickable.svelte";
   import SwapIcon from '@assets/swap_arrow.png';
+  import ExchangeTable from "./ExchangeTable.svelte";
+  import ArrowDown from '@assets/arrow_down_black.png';
 
   let { tokenList } = $props();
 
@@ -16,6 +18,8 @@
   let swapRef = $state<HTMLDivElement>();
   let tokenRate = $state<number>(0);
   let rotate = $state<boolean>(false);
+
+  const converter = (input: number) => tokenRate * input;
 
   const swapToken = () => {
     const tempSrcToken = selectedSourceToken;
@@ -41,63 +45,65 @@
     if (selectedSourceToken?.price && selectedOutputToken?.price) tokenRate = selectedSourceToken?.price / selectedOutputToken?.price
   });
 
-  $effect(() => {
-    if (tokenRate) converter(mountOfSourceToken)
-  });
-
-  const converter = (input: number) => {
-    mountOfSourceToken = input;
-    mountOfOutputToken = tokenRate * input;
-  }
-
   const handleInput = (e: unknown) => {
+    //@ts-ignore
     const value = e.target.value;
     const numValue = Number.parseFloat(value)
-    converter(numValue);
+    mountOfSourceToken = numValue;
+    mountOfOutputToken = converter(numValue);
   }
 </script>
 
 <div class="exchangeForm__container">
   <div class="exchangeForm__wrapper">
-    <h1>Token exchange calculator</h1>
-    <div class="token__container">
-      <Input
-        value={mountOfSourceToken} 
-        type="number" 
-        min="0" 
-        inputmode="numeric" 
-        pattern="[0-9]*"
-        {handleInput}
-      />
-      <Selector 
-        bind:selectedValue={selectedSourceToken} 
-        className="exchangeForm__selection"
-        options={tokenList} 
-      />
-    </div>
+    <div class="exchangeForm">
+      <h1>Exchange Calculator</h1>
+      <div class="token__container">
+        <Input
+          value={mountOfSourceToken} 
+          type="number" 
+          min="0" 
+          inputmode="numeric" 
+          pattern="[0-9]*"
+          {handleInput}
+        />
+        <Selector 
+          bind:selectedValue={selectedSourceToken} 
+          className="exchangeForm__selection"
+          options={tokenList} 
+        />
+      </div>
 
-    <Clickable bind:ref={swapRef} className="swapper_btn" onClick={swapToken}>
-      <img src={SwapIcon} width="40" alt="swap icon" class="visible" />
-    </Clickable>
+      <Clickable bind:ref={swapRef} className="swapper_btn" onClick={swapToken}>
+        <img src={SwapIcon} width="40" alt="swap icon" class="visible" />
+      </Clickable>
 
-    <div class="token__container">
-      <Input 
-        value={mountOfOutputToken}
-        type="number" 
-        min="0" 
-        inputmode="numeric" 
-        pattern="[0-9]*"
-        disabled
-      />
-      <Selector 
-        bind:selectedValue={selectedOutputToken} 
-        className="exchangeForm__selection" 
-        options={tokenList} 
-      />
-    </div>
+      <div class="token__container">
+        <Input 
+          value={tokenRate * mountOfSourceToken}
+          type="number" 
+          min="0" 
+          inputmode="numeric" 
+          pattern="[0-9]*"
+          disabled
+        />
+        <Selector 
+          bind:selectedValue={selectedOutputToken} 
+          className="exchangeForm__selection" 
+          options={tokenList} 
+        />
+      </div>
 
-    <div class="exchange_rate_text">
-      <b>1 {selectedSourceToken?.currency} = {tokenRate?.toFixed(4)} {selectedOutputToken?.currency}</b>
+      <div class="exchange_rate_text">
+        <b>1 {selectedSourceToken?.currency} = {tokenRate?.toFixed(4)} {selectedOutputToken?.currency}</b>
+      </div>
     </div>
   </div>
 </div>
+
+<div class="moveDown">
+  <a href="#exchange_table">Coin to USD exchange rate</a>
+  <img src={ArrowDown} alt="arrow down"/>
+</div>
+
+<ExchangeTable {tokenList} />
