@@ -1,11 +1,9 @@
 <script lang="ts">
-  import type { SvelteComponent } from "svelte";
-
   type ClickablePropsType = {
     onClick?: (event: MouseEvent) => void;
     onHover?: (event: MouseEvent) => void;
     disabled?: boolean;
-    className?: string | Array;
+    className?: string | Array<unknown>;
     ref?: HTMLElement;
     children: Function;
   }

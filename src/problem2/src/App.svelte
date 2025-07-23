@@ -4,11 +4,10 @@
   import { onMount } from 'svelte';
   import { filterAvailableTokens } from './handler';
 
-  let tokenList = $state<(PriceSchema & TokenSchema)[]>([]);
+  let tokenList = $state<(PriceSchema & TokenSchema)[]>();
 
   onMount(() => {
     filterAvailableTokens().then(data => {
-      console.log("Data", data);
       tokenList = data
     });
   });

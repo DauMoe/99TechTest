@@ -1,7 +1,7 @@
 <script module>
   export type SelectorPropType = {
     options: TokenListType[];
-    className?: string | Array;
+    className?: string | Array<unknown>;
     selectedValue?: TokenListType;
   }
 </script>
@@ -40,11 +40,7 @@
     if (options && !selectedValue) {
       selectedValue = options[0];
     }
-  })
-
-  $effect(() => {
-    listOptions = options;
-  })
+  });
 
   $effect(() => {
     if (searchValue) {
