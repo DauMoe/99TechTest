@@ -5,7 +5,7 @@ type FetchOptions = {
   payload?: any;
 }
 
-type IconsSchema = {
+type TokenSchema = {
   name: string;
   path: string;
   sha: string;
@@ -27,3 +27,5 @@ type PriceSchema = {
   date: string;
   price: number;
 }
+
+type TokenListType = (PriceSchema & TokenSchema);

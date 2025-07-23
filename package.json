@@ -15,12 +15,5 @@
     "challenge"
   ],
   "author": "BeanMeow",
-  "license": "MIT",
-  "devDependencies": {
-    "vite": "^7.0.5"
-  },
-  "dependencies": {
-    "axios": "^1.6.0",
-    "dotenv": "^16.3.1"
-  }
+  "license": "MIT"
 }

@@ -1,0 +1,65 @@
+@use './colors.scss' as *;
+
+.selector_container {
+  display: inline-block;
+  position: relative;
+
+  .selector_preview {
+    padding: 14px;
+    display: inline-flex;
+    flex-direction: row;
+    align-items: center;
+    border-radius: 8px;
+    transition: background-color .2s;
+
+    &.option:hover {
+      background-color: $dropdown-hover;
+    }
+  
+    & > img.selected_icon {
+      margin-right: 8px;
+      width: 32px;
+    }
+  
+    & > img.dropdown_arrow {
+      margin-left: 8px;
+      width: 14px;
+    }
+  
+    & > span {
+      font-weight: bold;
+      font-size: 20px;
+    }
+  }
+
+  .options_container {
+    position: absolute;
+    width: 300px;
+    top: 60px;
+    padding: 6px;
+    box-shadow: 0 -4px 16px rgba(0, 0, 0, 0.12);
+    border-radius: 8px;
+    background-color: $white;
+    display: none;
+    flex-direction: column;
+
+    & > .textBox__wrapper {
+      height: 45px;
+      font-size: 18px;
+    }
+
+    &.show_dropdown {
+      display: flex;
+      z-index: 10;
+    }
+
+    & >.options_wrapper {
+      width: 100%;
+      display: flex;
+      flex-direction: column;
+      max-height: 400px;
+      overflow: auto;
+      margin-top: 8px;
+    }
+  }
+}
