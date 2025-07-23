@@ -23,6 +23,7 @@
   let swapRef = $state<HTMLDivElement>();
   let tokenRate = $state<number>(0);
   let rotate = $state<boolean>(false);
+  let toUSDollar = $state<number>(0);
 
   const converter = (input: number) => tokenRate * input;
 
@@ -47,8 +48,16 @@
   });
 
   $effect(() => {
-    if (selectedSourceToken?.price && selectedOutputToken?.price) tokenRate = selectedSourceToken?.price / selectedOutputToken?.price
+    if (selectedSourceToken?.price && selectedOutputToken?.price) {
+      tokenRate = selectedSourceToken?.price / selectedOutputToken?.price;
+    }
   });
+
+  $effect(() => {
+    if (selectedOutputToken && mountOfSourceToken) {
+      toUSDollar = +(selectedOutputToken?.price * tokenRate * mountOfSourceToken).toFixed(3);
+    }
+  })
 
   const handleInput = (e: unknown) => {
     //@ts-ignore
@@ -98,6 +107,7 @@
           options={tokenList} 
         />
       </div>
+      <p class="exchange_usd">&asymp; <b>${toUSDollar}</b></p>
 
       <div class="exchange_rate_text">
         <b>1 {selectedSourceToken?.currency} = {tokenRate?.toFixed(4)} {selectedOutputToken?.currency}</b>
