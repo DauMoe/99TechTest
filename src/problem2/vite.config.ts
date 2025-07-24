@@ -3,7 +3,7 @@ import { svelte } from '@sveltejs/vite-plugin-svelte'
 
 // https://vite.dev/config/
 export default defineConfig({
-  base: './', // ensures relative paths in build output
+  base: './',
   plugins: [svelte()],
   resolve: {
     alias: {
@@ -15,4 +15,17 @@ export default defineConfig({
       '@handler': '/src/handler',
     },
   },
+  build: {
+    outDir: 'dist',
+    assetsDir: '.',
+    emptyOutDir: true,
+    rollupOptions: {
+      input: './index.html',
+      output: {
+        entryFileNames: 'index.js',
+        assetFileNames: '[name][extname]',
+        manualChunks: undefined
+      }
+    }
+  }
 });

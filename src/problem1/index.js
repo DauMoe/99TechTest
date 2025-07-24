@@ -41,9 +41,21 @@ rl.question(`N = `, n => {
   if (isNaN(num) || !Number.isInteger(num)) {
     console.log("N must be an integer");
   } else {
-    console.log("Sum to N (Solution A): ", sum_to_n_a(num));
-    console.log("Sum to N (Solution B): ", sum_to_n_b(num));
-    console.log("Sum to N (Solution C): ", sum_to_n_c(num));
+    try {
+      console.log("Sum to N (Solution A): ", sum_to_n_a(num));
+    } catch(e) {
+      console.error("[ERROR] Solution A", e.message);
+    }
+    try {
+      console.log("Sum to N (Solution B): ", sum_to_n_b(num));
+    } catch(e) {
+      console.error("[ERROR] Solution B", e.message);
+    }
+    try {
+      console.log("Sum to N (Solution C): ", sum_to_n_c(num));
+    } catch(e) {
+      console.error("[ERROR] Solution C", e.message);
+    }
   }
   rl.close();
 });
