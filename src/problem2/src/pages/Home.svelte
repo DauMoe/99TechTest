@@ -2,20 +2,24 @@
   import '@styles/index.scss';
   import { ExchangeForm, ExchangeTable, Loading, setLoading } from '@lib/index';
   import { filterAvailableTokens } from '@handler/index';
-  import { onDestroy, onMount } from 'svelte';
+  import { onDestroy, onMount, tick } from 'svelte';
 
   let tokenList = $state<(PriceSchema & TokenSchema)[]>();
-  let timer = $state<number | null>(null);
+  let timer = $state<number>();
 
   onMount(() => {
     setLoading(true);
-    filterAvailableTokens().then(data => {
-      tokenList = data
-    });
-    timer = setTimeout(() => setLoading(false), 2000);
+    filterAvailableTokens()
+      .then(data => {
+        tokenList = data;
+      })
+      .finally(async () => {
+        await tick();
+        timer = setTimeout(() => setLoading(false), 1000);
+      });
   });
 
-  onDestroy(() => !!timer && clearTimeout(timer));
+  onDestroy(() => timer && clearTimeout(timer));
 </script>
 
 <Loading />
